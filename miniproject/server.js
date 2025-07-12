@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { logMiddleware } from './middleware/log.middleware.js';
 
 
 
@@ -21,6 +22,18 @@ const __dirname = path.dirname(__filename);
 
 
 const app = express();
+
+if(!fs.existsSync(path.join(__dirname, 'logs'))){
+    fs.mkdirSync(path.join(__dirname, 'logs'));
+}
+
+
+// global middleware
+app.use(logMiddleware)
+
+
+
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to logger api');

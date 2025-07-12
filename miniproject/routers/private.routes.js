@@ -1,15 +1,17 @@
 import { Router } from "express";
+import { authMiddleware } from "../middleware/auth.middleware.js";
 
 
 const router = Router();
 
 
-router.get('/dashboard', (req,res) =>{
+router.get('/dashboard', authMiddleware, (req,res) =>{
 
    
 
     res.status(200).json({
-        message: "Welcome to the dashboard",
+        message: `Welcome to the dashboard$`,
+        data: req.user
         
 
 

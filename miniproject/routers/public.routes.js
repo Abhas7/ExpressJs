@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { generateToken } from "../utils/token.utils";
 
 
 const router = Router();
@@ -10,7 +11,7 @@ router.get('/geneeate-token', (req,res) =>{
 
     res.status(200).json({
         message: "Token generated successfully",
-        data: token
+        data: generateToken()
 
 
   })
